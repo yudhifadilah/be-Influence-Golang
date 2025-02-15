@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2025 at 01:46 PM
+-- Generation Time: Feb 15, 2025 at 03:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -98,15 +98,16 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `email`, `password`, `role`, `brand_name`, `pic_name`, `pic_phone`, `province`, `city`, `referral_code`, `created_at`, `name`, `phone`, `address`, `brand_logo`, `updated_at`, `deleted_at`) VALUES
-(1, 'hayangwonton@gmail.com', '$2y$10$SOMcGz8PYt0gngNQIrYBTedMAznrE8CELgN2qAlvE3qAYidkUALtW', '', 'tes', 'tes', 'tes', '16', '213', '', '2025-02-05 18:10:53', '', NULL, '', NULL, NULL, NULL),
+(1, 'newbrand@example.com', '$2a$10$FKT0zy4xHmnAigfHjUF7bueFhTixKdVx./6TAGsbg6tLSDi3/uiEu', '', 'New Brand X', 'John Doe Updated', '08123456780', 'Jakarta', 'Jakarta Pusat', '', '2025-02-05 18:10:53', '', NULL, '', 'uploads/brands/3rd.png', '2025-02-15 13:28:57', '2025-02-15 20:29:29'),
 (2, 'niki@gmail.com', '$2y$10$oLV6MBabIH.VuQKpe2E7KOfzt4uZefL7ZT4WUFn4F.9YnCUuo/CX2', '', 'niki', 'niki', '0823232323', '9', '64', '', '2025-02-07 08:38:22', '', NULL, '', NULL, NULL, NULL),
-(3, 'shifa@gmail.com', '$2y$10$r2XBRk8Vng.PJXjb5F/CM.bf6pQyARhDKojxA7ZYKQusGflZ6tXkS', '', 'Shifa', 'Fadhil', '0822232323', '9', '64', '', '2025-02-07 09:22:42', '', NULL, '', NULL, NULL, NULL),
+(3, 'shifa@gmail.com', '$2y$10$r2XBRk8Vng.PJXjb5F/CM.bf6pQyARhDKojxA7ZYKQusGflZ6tXkS', '', 'Shifa', 'Fadhil', '0822232323', '9', '64', '', '2025-02-07 09:22:42', '', NULL, '', NULL, NULL, '2025-02-15 20:17:59'),
 (4, 'laksana@gmail.com', '$2y$10$Xbwz7qL0rFyt0l.3np4coeyQFaqv6Cp4bhUbLPmxkZqYIQ/leZf5W', '', 'laksana', 'laksana', '0987654', '9', '73', '', '2025-02-07 12:09:22', '', NULL, '', NULL, NULL, NULL),
 (5, '123333test@example.com', '$2y$10$sRtc4VvXsLFs8zVb0lks3eHjcTqc7BGtrmR7I2GzsV1bG9gPJUR..', '', 'john', 'eeeeee', '08123456789', 'jambi', 'bandung', NULL, '2025-02-14 12:38:25', NULL, NULL, NULL, 'http://localhost:8080/uploads/brands/1739561905_32d835252b8c58461498.png', '2025-02-14 12:38:25', NULL),
 (6, '', '$2a$10$Ll09sEtopE6IQa0n5Jk2YeMT5uwoxgzzgiY17yuNMWQrXZYOAi/P2', '', '', '', '', '', '', NULL, '2025-02-15 10:44:24', NULL, NULL, NULL, 'uploads/brands/LOGO LADIES.png', '2025-02-15 10:44:24', NULL),
 (7, '', '$2a$10$yKieyaZGBW/vivu8AfvRD.pnCRlaoN8NibePM8pAqEPLMDgCqE4B.', 'brand', '', '', '', '', '', NULL, '2025-02-15 12:38:16', NULL, NULL, NULL, 'uploads/brands/LOGO LADIES.png', '2025-02-15 12:38:16', NULL),
 (8, 'tatang@gmail.com', '$2a$10$UjSMG2Hg./PukfDH.m9Q6.XVhVCiSdR5ghqCTv2ZgNG.AEnzpLGXi', 'brand', 'john', 'eeeeee', '08123456789', 'jambi', 'bandung', NULL, '2025-02-15 12:40:47', NULL, NULL, NULL, 'uploads/brands/LOGO LADIES.png', '2025-02-15 12:40:47', NULL),
-(9, 'tatang@gmail.com', '$2a$10$49QW4ufy7Vcd0SoLL80Fe.RtaMtJJERq8a9XDkHNnLCJ5.YMN7J/m', 'brand', 'john', 'eeeeee', '08123456789', 'jambi', 'bandung', NULL, '2025-02-15 12:41:49', NULL, NULL, NULL, 'uploads/brands/LOGO LADIES.png', '2025-02-15 12:41:49', NULL);
+(9, 'tatang@gmail.com', '$2a$10$49QW4ufy7Vcd0SoLL80Fe.RtaMtJJERq8a9XDkHNnLCJ5.YMN7J/m', 'brand', 'john', 'eeeeee', '08123456789', 'jambi', 'bandung', NULL, '2025-02-15 12:41:49', NULL, NULL, NULL, 'uploads/brands/LOGO LADIES.png', '2025-02-15 12:41:49', NULL),
+(10, 'asu', '$2a$10$4hge3qgFCdLbmF8vS6kCEuX5vJWnmFUaxiu2iFIcNZhATG3GBLSDq', 'brand', 'john', 'eeeeee', '08123456789', 'jambi', 'bandung', NULL, '2025-02-15 13:20:07', NULL, NULL, NULL, 'uploads/brands/LOGO LADIES.png', '2025-02-15 13:20:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -132,12 +133,11 @@ CREATE TABLE `campaigns` (
 --
 
 INSERT INTO `campaigns` (`id`, `name`, `category`, `influencer_id`, `start_date`, `end_date`, `pdf_file`, `status`, `created_at`, `updated_at`) VALUES
-(1, '123333test@example.com', 'Entertainment', 2, '2025-03-01', '2025-03-10', 'http://localhost:8080/uploads/pdf/1739562971_89bb2020e07a36a9aa1a.pdf', 'pending', '2025-02-14 19:56:11', '2025-02-14 19:56:11'),
+(1, '123333test@example.com', 'Entertainment', 2, '2025-03-01', '2025-03-10', 'http://localhost:8080/uploads/pdf/1739562971_89bb2020e07a36a9aa1a.pdf', '', '2025-02-14 19:56:11', '2025-02-15 13:46:26'),
 (2, '123333test@example.com', 'enterntainment', 5, '2025-03-01', '2025-03-10', 'http://localhost:8080/uploads/pdf/1739563241_ac99bb654fe32e62999f.pdf', 'pending', '2025-02-14 20:00:41', '2025-02-14 20:00:41'),
 (3, 'wwweqewqeqweqw', 'enterntainment', 5, '2025-03-01', '2025-03-10', '', '', '2025-02-15 12:01:46', '2025-02-15 12:01:46'),
 (4, 'wwweqewqeqweqw', 'enterntainment', 5, '2025-03-01', '2025-03-10', '', '', '2025-02-15 12:04:25', '2025-02-15 12:04:25'),
-(5, 'wwweqewqeqweqw', 'enterntainment', 5, '2025-03-01', '2025-03-10', 'uploads\\pdf\\Proposal-OfficialRoomCard_Starzone.pdf', '', '2025-02-15 12:05:02', '2025-02-15 12:05:02'),
-(6, 'wwweqewqeqweqw', 'enterntainment', 5, '2025-03-01', '2025-03-10', 'uploads\\pdf\\5_Proposal-OfficialRoomCard_Starzone.pdf', 'pending', '2025-02-15 12:07:39', '2025-02-15 12:07:39');
+(6, 'wwweqewqeqweqw', 'enterntainment', 5, '2025-03-01', '2025-03-10', 'uploads\\pdf\\5_Proposal-OfficialRoomCard_Starzone.pdf', 'rejected', '2025-02-15 12:07:39', '2025-02-15 13:48:36');
 
 -- --------------------------------------------------------
 
@@ -243,7 +243,8 @@ INSERT INTO `influencers` (`id`, `email`, `password`, `role`, `full_name`, `birt
 (7, '', '$2a$10$GAkU2dMDQHdtpQv.Ki5FAevXz2rM7wAwNEqeO6Ug5O1CtftH2jFey', '', '', '0000-00-00', '', '', '', NULL, '', '', '', 0, 'uploads\\wp2695919-black-lagoon-wallpaper-1080p.jpg', '', '', '', '', '2025-02-15 10:53:52', NULL),
 (8, '', '$2a$10$T1RbwbEOSmXe1JX/U7SdH.Rw5m9rft6MMjD6vTudQm1CbcrFql0Bu', '', '', '0000-00-00', '', '', '', NULL, '', '', '', 0, 'uploads\\wp2695919-black-lagoon-wallpaper-1080p.jpg', '', '', '', '', '2025-02-15 11:50:38', NULL),
 (9, 'fayudhi@gmail.com', '$2a$10$xBgzEOcv1T/PYEeVW3687ulWN2F/JjY7eTdNB4h7voc16KW2MsBZ.', '', 'john', '1995-01-15', 'female', 'enterntainment', '08123456789', NULL, '1234567890123456', '987654321098765', 'https://instagram.com/johndoe', 100000, 'uploads\\wp2695919-black-lagoon-wallpaper-1080p.jpg', '', '', '', '', '2025-02-15 11:58:07', NULL),
-(10, 'dapit@gmail.com', '$2a$10$JVDc8BFfVXW1oZ3rS0g0qujHDZb5CxDIHpXEAWFehiuUPn1u.Y08e', 'influencer', 'john', '1995-01-15', 'female', 'enterntainment', '08123456789', NULL, '1234567890123456', '987654321098765', 'https://instagram.com/johndoe', 100000, 'uploads\\wp2695919-black-lagoon-wallpaper-1080p.jpg', '', '', '', '', '2025-02-15 12:31:11', NULL);
+(11, 'emailbaru@gmail.com', '$2a$10$IHpun91idTs1cVxHP2pGVeY1mZFgSIGw5tx4Aq/AbBckWond.JP/C', 'influencer', 'Ohang', '1995-01-15', 'female', 'enterntainment', '08123456789', NULL, '1234567890123456', '987654321098765', 'https://instagram.com/johndoe', 100000, 'uploads\\78bd09e961f027f59d79491bc37205fe.png', '', '', '', '', '2025-02-15 13:23:06', NULL),
+(12, 'dapit@gmail.com', '$2a$10$NjxN8Th6HpDSM5YvervwP.dqwiNrZ4hIAIvji7A0OUCQCmVd3PaO2', 'influencer', 'john', '1995-01-15', 'female', 'enterntainment', '08123456789', NULL, '1234567890123456', '987654321098765', 'https://instagram.com/johndoe', 100000, 'uploads\\wp2695919-black-lagoon-wallpaper-1080p.jpg', '', '', '', '', '2025-02-15 13:53:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -257,15 +258,11 @@ CREATE TABLE `services` (
   `service_name` varchar(255) NOT NULL,
   `price_per_post` decimal(10,2) NOT NULL,
   `description` text NOT NULL,
-  `duration` int(11) NOT NULL
+  `duration` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `services`
---
-
-INSERT INTO `services` (`id`, `influencer_id`, `service_name`, `price_per_post`, `description`, `duration`) VALUES
-(1, 1, 'Promosi di Instagram Story', 200000.00, 'Promosi produk atau jasa di Instagram Story selama 24 jam.', 25);
 
 -- --------------------------------------------------------
 
@@ -290,11 +287,11 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'admin', '$2y$10$uryfmgscvCZYUxFx57pyKe.vKjoWWz0ItbjzIb0B.z3GRrPw6me8G', '', '2025-02-14 17:40:48', NULL, NULL),
 (2, 'ewe', '$2y$10$F5vXOi./NVq8xLy6F3GljOVYUbOGwEz5n5owLy6OzXofQeQeiKO92', '', '2025-02-15 08:54:22', NULL, NULL),
-(3, 'testuser', '$2a$10$13E7eP5wLdids0zQmP4dqeJCIQ1GeXyX58X7/EbaDr.ZrDdzNYqhS', 'admin', '2025-02-15 10:13:07', '2025-02-15 17:13:07', NULL),
+(3, 'adminuser', '$2a$10$13E7eP5wLdids0zQmP4dqeJCIQ1GeXyX58X7/EbaDr.ZrDdzNYqhS', 'admin', '2025-02-15 10:13:07', '2025-02-15 20:11:00', '2025-02-15 13:11:41'),
 (4, 'eeeeeeeee', '$2a$10$ihbUQNzE594rGr2bQ39pye5x.vTWptbx/MYvXEVUSwV2rT7gtJpGC', 'admin', '2025-02-15 10:13:26', '2025-02-15 17:13:26', NULL),
 (5, 'eeeee222eeee', '$2a$10$6fxlB1E/.asSlEri0NAEWOYPyuI8uZAX9qdxPhIo3rMsRgtboNtX.', 'admin', '2025-02-15 10:39:51', '2025-02-15 17:39:51', NULL),
 (6, 'dapi', '$2a$10$NoCPP/vdKYtDhnyk.Bjmj.g0Qeh7pA.qSAH0QnJJpY8v0VoRBK5rS', 'admin', '2025-02-15 10:56:40', '2025-02-15 17:56:40', NULL),
-(7, 'dapit', '$2a$10$vXZu.hV19OaAWyrxm5aVuu8sZ054h6WcsMLSztFloWSaSkGEjU7ae', 'admin', '2025-02-15 10:56:46', '2025-02-15 17:56:46', NULL);
+(8, 'johndoe', '$2a$10$IIhOOwAsLhxEuE9xqp1Zk.uN97hdh5iZ7fru4lIagWAC9Wqarfb.S', 'admin', '2025-02-15 13:02:06', '2025-02-15 20:02:06', '2025-02-15 13:31:01');
 
 --
 -- Indexes for dumped tables
@@ -377,7 +374,7 @@ ALTER TABLE `bank_accounts`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `campaigns`
@@ -401,19 +398,19 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `influencers`
 --
 ALTER TABLE `influencers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
