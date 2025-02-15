@@ -147,8 +147,9 @@ func DeleteUser(c *gin.Context) {
 		return
 	}
 
-	if err := config.DB.Delete(&user).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal menghapus user"})
+	// Hard delete
+	if err := config.DB.Unscoped().Delete(&user).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete brand", "details": err.Error()})
 		return
 	}
 

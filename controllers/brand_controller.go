@@ -115,51 +115,90 @@ func GetBrandByID(c *gin.Context) {
 	c.JSON(http.StatusOK, brand)
 }
 
-// Update Brand
 func UpdateBrand(c *gin.Context) {
 	id := c.Param("id")
 	var brand models.Brand
 
+	// Cek apakah brand ada
 	if err := config.DB.First(&brand, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Brand not found"})
 		return
 	}
 
-	var input models.Brand
-	if err := c.ShouldBind(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	// Parse data dari form-data
+	if err := c.Request.ParseMultipartForm(10 << 20); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to parse form data"})
 		return
+	}
+
+	// Data yang akan diperbarui
+	updateData := map[string]interface{}{}
+
+	// Ambil data dari form
+	if email := c.PostForm("email"); email != "" {
+		updateData["email"] = email
+	}
+	if brandName := c.PostForm("brand_name"); brandName != "" {
+		updateData["brand_name"] = brandName
+	}
+	if picName := c.PostForm("pic_name"); picName != "" {
+		updateData["pic_name"] = picName
+	}
+	if picPhone := c.PostForm("pic_phone"); picPhone != "" {
+		updateData["pic_phone"] = picPhone
+	}
+	if province := c.PostForm("province"); province != "" {
+		updateData["province"] = province
+	}
+	if city := c.PostForm("city"); city != "" {
+		updateData["city"] = city
 	}
 
 	// Hash password jika ada
-	if input.Password != "" {
-		hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
-		input.Password = string(hashedPassword)
+	if password := c.PostForm("password"); password != "" {
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
+			return
+		}
+		updateData["password"] = string(hashedPassword)
 	}
 
-	// Upload logo baru jika ada
+	// Upload logo jika ada
 	file, err := c.FormFile("brand_logo")
 	if err == nil {
 		path := "uploads/brands/" + file.Filename
-		if err := c.SaveUploadedFile(file, path); err == nil {
-			input.BrandLogo = path
+		if err := c.SaveUploadedFile(file, path); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to upload logo"})
+			return
 		}
+		updateData["brand_logo"] = path
 	}
 
-	config.DB.Model(&brand).Updates(input)
+	// Update database
+	if err := config.DB.Model(&brand).Updates(updateData).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update brand", "details": err.Error()})
+		return
+	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Brand updated successfully"})
+	c.JSON(http.StatusOK, gin.H{"message": "Brand updated successfully", "updated_data": updateData})
 }
 
-// Delete Brand
 func DeleteBrand(c *gin.Context) {
 	id := c.Param("id")
 	var brand models.Brand
+
+	// Cek apakah brand ada
 	if err := config.DB.First(&brand, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Brand not found"})
 		return
 	}
 
-	config.DB.Delete(&brand)
+	// Hard delete
+	if err := config.DB.Unscoped().Delete(&brand).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete brand", "details": err.Error()})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{"message": "Brand deleted successfully"})
 }
