@@ -9,21 +9,28 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// CreateService (Menambahkan layanan baru)
 func CreateService(c *gin.Context) {
 	var input models.Service
 
+	// Bind JSON ke struct
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
+	// Tambahkan 10% ke harga awal
+	input.PricePerPost = input.PricePerPost * 0.9
+
+	// Simpan ke database
 	if err := config.DB.Create(&input).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal membuat layanan"})
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "Layanan berhasil dibuat", "data": input})
+	c.JSON(http.StatusCreated, gin.H{
+		"message": "Layanan berhasil dibuat",
+		"data":    input,
+	})
 }
 
 // GetAllServices (Mendapatkan semua layanan)

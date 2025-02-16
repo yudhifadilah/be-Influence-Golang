@@ -94,7 +94,7 @@ func LoginBrand(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Login successful", "role": brand.Role})
+	c.JSON(http.StatusOK, gin.H{"message": "Login berhasil", "brand_id": brand.ID, "role": brand.Role})
 }
 
 // Get All Brands

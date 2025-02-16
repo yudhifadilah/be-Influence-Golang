@@ -9,18 +9,19 @@ import (
 // SetupRoutes mengatur semua rute aplikasi
 func SetupRoutes(r *gin.Engine) {
 
+	// Login
 	authRoutes := r.Group("/auth")
 	{
 		authRoutes.POST("/register", controllers.Register)
 		authRoutes.POST("/login", controllers.Login)
 
-		// Hanya admin yang bisa mengelola user lain
 		authRoutes.GET("/", controllers.GetAllUsers)
 		authRoutes.GET("/:id", controllers.GetUserByID)
 		authRoutes.PUT("/:id", controllers.UpdateUser)
 		authRoutes.DELETE("/:id", controllers.DeleteUser)
 	}
 
+	// Brand Endpoint
 	brandGroup := r.Group("/brands")
 	{
 		brandGroup.POST("/register", controllers.RegisterBrand)
@@ -31,6 +32,7 @@ func SetupRoutes(r *gin.Engine) {
 		brandGroup.DELETE("/:id", controllers.DeleteBrand)
 	}
 
+	// Influencer Endpoint
 	influencerGroup := r.Group("/influencers")
 	{
 		influencerGroup.POST("/register", controllers.RegisterInfluencer)
@@ -41,6 +43,7 @@ func SetupRoutes(r *gin.Engine) {
 		influencerGroup.DELETE("/:id", controllers.DeleteInfluencer)
 	}
 
+	// campaigns Endpoint
 	campaigns := r.Group("/campaigns")
 	{
 		campaigns.POST("/create", controllers.RegisterCampaign)        // Menambahkan campaign baru
@@ -50,6 +53,7 @@ func SetupRoutes(r *gin.Engine) {
 		campaigns.DELETE("/delete/:id", controllers.DeleteCampaign)    // Menghapus campaign berdasarkan ID
 	}
 
+	// Service Endpoint
 	serviceRoutes := r.Group("/services")
 	{
 		serviceRoutes.POST("/", controllers.CreateService)
@@ -59,4 +63,36 @@ func SetupRoutes(r *gin.Engine) {
 		serviceRoutes.DELETE("/:id", controllers.DeleteService)
 	}
 
+	// Pembayaran Midtrans
+	midRoutes := r.Group("/api")
+	{
+		midRoutes.POST("/payment", controllers.CreatePayment)
+
+	}
+
+	// Web hook untuk merubah status pada database ketika sudah berhasil payment
+	hookRoutes := r.Group("/webhook")
+	{
+		hookRoutes.POST("/payment", controllers.WebhookPaymentHandler)
+	}
+
+	// Article Endpoint
+	articleGroup := r.Group("/api/articles")
+	{
+		articleGroup.GET("/", controllers.GetAllArticles)
+		articleGroup.GET("/:id", controllers.GetArticleByID)
+		articleGroup.POST("/", controllers.CreateArticle)
+		articleGroup.PUT("/:id", controllers.UpdateArticle)
+		articleGroup.DELETE("/:id", controllers.DeleteArticle)
+	}
+
+	// FAQs Endpoint
+	faqGroup := r.Group("/api/faqs")
+	{
+		faqGroup.GET("/", controllers.GetAllFAQs)
+		faqGroup.GET("/:id", controllers.GetFAQByID)
+		faqGroup.POST("/", controllers.CreateFAQ)
+		faqGroup.PUT("/:id", controllers.UpdateFAQ)
+		faqGroup.DELETE("/:id", controllers.DeleteFAQ)
+	}
 }

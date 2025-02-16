@@ -93,8 +93,9 @@ func LoginInfluencer(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Login successful",
-		"role":    influencer.Role,
+		"message":       "Login successful",
+		"role":          influencer.Role,
+		"influencer_id": influencer.ID,
 	})
 }
 

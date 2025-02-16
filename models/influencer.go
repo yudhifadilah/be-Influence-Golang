@@ -22,4 +22,8 @@ type Influencer struct {
 	City               string    `json:"city"`
 	RegistrationDate   time.Time `gorm:"autoCreateTime" json:"registration_date"`
 	Role               string    `json:"role" gorm:"default:'influencer'"`
+
+	// Relasi
+	Services []Service `gorm:"foreignKey:InfluencerID;constraint:OnDelete:CASCADE;"` // Relasi dengan Service
+
 }
